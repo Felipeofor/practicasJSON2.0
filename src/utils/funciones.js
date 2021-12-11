@@ -1,4 +1,4 @@
-export function funciones(parametro) {
+export function funciones(data) {
 
     //Guardar sexos disponibles
 
@@ -9,9 +9,21 @@ export function funciones(parametro) {
                 sexo.push(item.paciente.sexo);
             }
         })
-        console.log(sexo);
+        return sexo;
     }
-    sexoPaciente(parametro);
+    let sexo = sexoPaciente(data);
+
+    //Funcion contadora de tipo de sexo
+
+    let contadorSexo = {};
+    sexo.forEach(item => {
+        contadorSexo[item] = data.filter(x => x.paciente.sexo === item);
+    })
+    
+    for (let key in contadorSexo) {
+        console.log(`Sexo: ${key} - Cantidad: ${contadorSexo[key].length}`);
+    }
+
 
     //Guardar instituciones disponibles
 
@@ -22,9 +34,19 @@ export function funciones(parametro) {
                 nombres.push(item.institucion.prestador);
             }
         })
-        console.log(nombres);
+        return nombres;
     }
-    instituciones(parametro);
+    let institucion = instituciones(data);
+
+    //Funcion contadora de instituciones
+
+    let contadorInstituciones = {};
+    institucion.forEach(item => {
+        contadorInstituciones[item] = data.filter(x => x.paciente.sexo === item);
+    })
+    // for (let i in contadorInstituciones) {
+    //     console.log(i + ": " + contadorInstituciones[i].length);
+    // }
 
 
     //Guardar estados disponibles
@@ -36,9 +58,19 @@ export function funciones(parametro) {
                 estado.push(item.estado.nombre);
             }
         })
-        console.log(estado);
+        return estado;
     }
-    estados(parametro);
+    let estado = estados(data);
+
+    //Funcion contadora de estados
+
+    let contadorEstado = {};
+    estado.forEach(item => {
+        contadorEstado[item] = data.filter(x => x.estado.nombre === item);
+    })
+    for (let i in contadorEstado) {
+        console.log(`La cantidad de pacientes en estado ${i} es de ${contadorEstado[i].length}`);
+    }
 
 
     //Guardar uge disponibles
@@ -50,9 +82,20 @@ export function funciones(parametro) {
                 tipo.push(item.uge.nombre);
             }
         })
-        console.log(tipo);
+        return tipo;
     }
-    uge(parametro);
+    
+    let ugeContadora = uge(data);
+
+    //Funcion contadora de uge
+
+    let contadorUge = {};
+    ugeContadora.forEach(item => {
+        contadorUge[item] = data.filter(x => x.uge.nombre === item);
+    })
+    for (let i in contadorUge) {
+        console.log(`La cantidad de pacientes en uge ${i} es de ${contadorUge[i].length}`);
+    }
 
     //Guardar tipo de internacion disponibles
 
@@ -63,7 +106,18 @@ export function funciones(parametro) {
                 tipo.push(item.tipoInternacion.nombre);
             }
         })
-        console.log(tipo);
+        return tipo;
     }
-    internacion(parametro);
+    
+    let internacionContadora = internacion(data);
+
+    //Funcion contadora de tipo de internacion
+
+    let contadorInternacion = {};
+    internacionContadora.forEach(item => {
+        contadorInternacion[item] = data.filter(x => x.tipoInternacion.nombre === item);
+    })
+    for (let i in contadorInternacion) {
+        console.log(`La cantidad de pacientes en tipo de internacion ${i} es de ${contadorInternacion[i].length}`);
+    }
 }
