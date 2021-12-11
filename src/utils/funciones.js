@@ -44,9 +44,9 @@ export function funciones(data) {
     institucion.forEach(item => {
         contadorInstituciones[item] = data.filter(x => x.paciente.sexo === item);
     })
-    // for (let i in contadorInstituciones) {
-    //     console.log(i + ": " + contadorInstituciones[i].length);
-    // }
+    for (let i in contadorInstituciones) {
+        console.log(i + ": " + contadorInstituciones[i].length);
+    }
 
 
     //Guardar estados disponibles
