@@ -49,9 +49,8 @@ export function funciones(data) {
         contadorInstituciones[item] = data.filter(x => x.paciente.sexo === item);
     })
     for (let i in contadorInstituciones) {
-        console.log(i + ": " + contadorInstituciones[i].length);
+        console.log(`Institucion: ${i} - Cantidad: ${contadorInstituciones[i].length +1 }`);
     }
-
 
     /* -------------------------------------------------------------------------- */
     /*                         Guardar estados disponibles                        */
@@ -142,7 +141,7 @@ export function funciones(data) {
         if (!inst[data[i].institucion.prestador][data[i].estado.nombre]) {
             inst[data[i].institucion.prestador][data[i].estado.nombre] = [];
         }
-        inst[data[i].institucion.prestador][data[i].estado.nombre].push(data[i]);
+        inst[data[i].institucion.prestador][data[i].estado.nombre].push(data[i].paciente);
     }
 
     console.log(inst);
