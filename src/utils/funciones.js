@@ -1,6 +1,8 @@
 export function funciones(data) {
 
-    //Guardar sexos disponibles
+    /* -------------------------------------------------------------------------- */
+    /*                          Guardar sexos disponibles                         */
+    /* -------------------------------------------------------------------------- */
 
     function sexoPaciente(parametro) {
         var sexo = [];
@@ -13,7 +15,7 @@ export function funciones(data) {
     }
     let sexo = sexoPaciente(data);
 
-    //Funcion contadora de tipo de sexo
+    /* -------------------- Contador de tipo de sexo ------------------- */
 
     let contadorSexo = {};
     sexo.forEach(item => {
@@ -25,7 +27,9 @@ export function funciones(data) {
     }
 
 
-    //Guardar instituciones disponibles
+    /* -------------------------------------------------------------------------- */
+    /*                      Guardar instituciones disponibles                     */
+    /* -------------------------------------------------------------------------- */
 
     function instituciones(parametro) {
         var nombres = [];
@@ -38,7 +42,7 @@ export function funciones(data) {
     }
     let institucion = instituciones(data);
 
-    //Funcion contadora de instituciones
+    /* ------------------- Contador de instituciones ------------------- */
 
     let contadorInstituciones = {};
     institucion.forEach(item => {
@@ -49,7 +53,9 @@ export function funciones(data) {
     }
 
 
-    //Guardar estados disponibles
+    /* -------------------------------------------------------------------------- */
+    /*                         Guardar estados disponibles                        */
+    /* -------------------------------------------------------------------------- */
 
     function estados(parametro) {
         var estado = [];
@@ -62,7 +68,7 @@ export function funciones(data) {
     }
     let estado = estados(data);
 
-    //Funcion contadora de estados
+    /* ---------------------- Contador de estados ---------------------- */
 
     let contadorEstado = {};
     estado.forEach(item => {
@@ -72,8 +78,9 @@ export function funciones(data) {
         console.log(`La cantidad de pacientes en estado ${i} es de ${contadorEstado[i].length}`);
     }
 
-
-    //Guardar uge disponibles
+    /* -------------------------------------------------------------------------- */
+    /*                           Guardar uge disponibles                          */
+    /* -------------------------------------------------------------------------- */
 
     function uge(parametro) {
         var tipo = [];
@@ -87,7 +94,7 @@ export function funciones(data) {
     
     let ugeContadora = uge(data);
 
-    //Funcion contadora de uge
+    /* ------------------------ Contador de uge ------------------------ */
 
     let contadorUge = {};
     ugeContadora.forEach(item => {
@@ -97,7 +104,9 @@ export function funciones(data) {
         console.log(`La cantidad de pacientes en uge ${i} es de ${contadorUge[i].length}`);
     }
 
-    //Guardar tipo de internacion disponibles
+    /* -------------------------------------------------------------------------- */
+    /*                   Guardar tipo de internacion disponibles                  */
+    /* -------------------------------------------------------------------------- */
 
     function internacion(parametro) {
         var tipo = [];
@@ -111,7 +120,7 @@ export function funciones(data) {
     
     let internacionContadora = internacion(data);
 
-    //Funcion contadora de tipo de internacion
+    /* ---------------- Contador de tipo de internacion ---------------- */
 
     let contadorInternacion = {};
     internacionContadora.forEach(item => {
@@ -120,4 +129,21 @@ export function funciones(data) {
     for (let i in contadorInternacion) {
         console.log(`La cantidad de pacientes en tipo de internacion ${i} es de ${contadorInternacion[i].length}`);
     }
+
+
+    // JSON { key "Nombre de la institucion": { key "estado de la auditoria" : value: [array de pacientes para esta intitucion y este estado]}} 
+
+    const inst = {};
+
+    for (let i = 0; i < data.length; i++) {
+        if (!inst[data[i].institucion.prestador]) {
+            inst[data[i].institucion.prestador] = {};
+        }
+        if (!inst[data[i].institucion.prestador][data[i].estado.nombre]) {
+            inst[data[i].institucion.prestador][data[i].estado.nombre] = [];
+        }
+        inst[data[i].institucion.prestador][data[i].estado.nombre].push(data[i]);
+    }
+
+    console.log(inst);
 }
