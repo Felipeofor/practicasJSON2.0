@@ -144,5 +144,5 @@ export function funciones(data) {
         inst[data[i].institucion.prestador][data[i].estado.nombre].push(data[i].paciente);
     }
 
-    console.log(inst);
+    console.log("Nuevo json: ", inst);
 }
